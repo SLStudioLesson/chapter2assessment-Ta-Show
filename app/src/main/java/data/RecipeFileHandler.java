@@ -1,5 +1,7 @@
 package data;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -7,6 +9,7 @@ public class RecipeFileHandler {
     private String filePath;
 
     public RecipeFileHandler() {
+
         filePath = "app/src/main/resources/recipes.txt";
     }
 
@@ -21,13 +24,19 @@ public class RecipeFileHandler {
      *
      * @return レシピデータ
      */
-    public ArrayList<String> readRecipes() {
-        // try {
 
-        // } catch (IOException e) {
-        //     System.out.println("Error reading file:" + e.getMessage());
-        // }
-        return null;
+     // ArrayList型のreadRecipesメソッドにrecipes.txtのレシピを1行ずづ代入。
+    public ArrayList<String> readRecipes() {
+        ArrayList<String> recipes = new ArrayList<>();
+        try (BufferedReader reader = new BufferedReader(new FileReader(this.filePath))){
+            String line;
+            while((line = reader.readLine()) != null) {
+                recipes.add(line);
+            }
+        } catch (IOException e) {
+            System.out.println("Error reading file:" + e.getMessage());
+        }
+        return recipes;
     }
 
     /**
