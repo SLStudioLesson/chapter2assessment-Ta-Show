@@ -78,6 +78,7 @@ public class RecipeUI {
                     System.out.println("Recipe Name: " + strs[0]);
                 } else {
                     System.out.print("Main Ingredients: " + strs[i]);
+                    System.out.println();
                 }
             }
         }
